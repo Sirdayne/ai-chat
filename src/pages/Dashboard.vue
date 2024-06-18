@@ -17,4 +17,8 @@ const count = ref(0)
 <style lang="sass" scoped>
 .main-dashboard
   display: flex
+
+.main-content
+  display: block
+  width: 100%
 </style>
