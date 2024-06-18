@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import { httpPrivate } from "@/services/httpClient.js";
 import { useRouter } from "vue-router";
 import MainBuilding from './components/MainBuilding.vue';
-import Spinner from '@/components/Spinner.vue';
+import SpinnerContainer from '@/components/SpinnerContainer.vue';
 
 const router = useRouter();
 const buildings = ref([]);
@@ -35,9 +35,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <div v-if="loading" class="spinner-container">
-      <Spinner></Spinner>
-    </div>
+    <SpinnerContainer v-if="loading"></SpinnerContainer>
     <div class="main-buildings-list" v-else>
       <MainBuilding
           v-for="item in buildings" :key="item.id"
@@ -56,11 +54,4 @@ onMounted(() => {
   flex-wrap: wrap
   padding: 25px
   box-sizing: border-box
-
-.spinner-container
-  display: flex
-  width: 100%
-  height: 200px
-  justify-content: center
-  align-items: center
 </style>
