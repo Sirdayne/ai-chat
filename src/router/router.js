@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Main from '../pages/Main.vue';
+import Main from '../pages/main/Main.vue';
 import Dashboard from '../pages/Dashboard.vue';
-import SignIn from '../pages/SignIn.vue';
+import SignIn from '../auth/SignIn.vue';
 import ChatMain from "../pages/ChatMain.vue";
 import Rating from "@/pages/Rating.vue";
 import DashboardChart from "@/pages/DashboardChart.vue";
@@ -9,11 +9,6 @@ import DashboardBuildings from "@/pages/DashboardBuildings.vue";
 import DashboardUsers from "@/pages/DashboardUsers.vue";
 
 const routes = [
-    {
-        path: '/',
-        name: 'Main',
-        component: Main,
-    },
     {
         path: '/dashboard',
         name: 'Dashboard',
@@ -55,6 +50,11 @@ const routes = [
         path: '/sign-in',
         name: 'SignIn',
         component: SignIn,
+    },
+    {
+        path: '/',
+        name: 'First',
+        redirect: '/sign-in'
     },
 ];
 

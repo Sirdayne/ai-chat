@@ -1,8 +1,34 @@
 <script setup>
 import { ref } from 'vue'
+import { httpPublic, setToken } from "@/services/httpClient.js";
+import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
 
 const email = ref('superadmin@example.com');
 const password = ref('secret');
+
+const loading = ref(false);
+const router = useRouter();
+
+const login = () => {
+  loading.value = true;
+  const body = {
+    email: email.value,
+    password: password.value
+  }
+  httpPublic.post('auth/login', body).then((res) => {
+    if (res && res.data && res.data.data && res.data.data.access_token) {
+      setToken(res.data.data.access_token);
+      ElMessage({
+        message: 'Вы успешно авторизованы!',
+        type: 'success',
+      })
+      router.push('/dashboard');
+    }
+  }).finally(() => {
+    loading.value = false;
+  })
+}
 </script>
 
 <template>
@@ -16,13 +42,13 @@ const password = ref('secret');
       <div class="auth-form">
         <div class="auth-form-row">
           <div class="auth-form-row__label">Email</div>
-          <el-input v-model="email" size="large" placeholder="Please type email..." />
+          <el-input v-model="email" size="large" placeholder="Please type email..." :disabled="loading" />
         </div>
         <div class="auth-form-row">
           <div class="auth-form-row__label">Password</div>
-          <el-input v-model="password" size="large" type="password" placeholder="Please type password..." />
+          <el-input v-model="password" size="large" type="password" placeholder="Please type password..."  :disabled="loading"/>
         </div>
-        <el-button type="primary" size="large">Continue</el-button>
+        <el-button type="primary" size="large" @click="login" :disabled="loading" :loading="loading">Continue</el-button>
       </div>
     </div>
   </div>

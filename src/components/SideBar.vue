@@ -1,14 +1,20 @@
 <script setup>
-import { ref } from 'vue'
+import { useRouter } from "vue-router";
+import { logout } from "@/services/httpClient.js";
 
-const count = ref(0)
+const router = useRouter();
+
+const clickLogout = () => {
+  router.push('/sign-in');
+  logout();
+}
 </script>
 
 <template>
   <div class="sidebar">
     <div class="sidebar-header">
       <img src="@/assets/ai-logo.png" class="sidebar-logo" alt="">
-      <img src="@/assets/logout.svg" class="sidebar-logout" alt="">
+      <img src="@/assets/logout.svg" class="sidebar-logout" alt="" @click="clickLogout()">
     </div>
 
     <div class="sidebar-profile">
@@ -35,9 +41,10 @@ const count = ref(0)
 
 <style lang="sass">
 .sidebar
+  min-width: 300px
   width: 300px
   background: #0d0e12
-  height: 100vh
+  min-height: 100vh
   box-sizing: border-box
   padding: 20px
   overflow-y: auto
