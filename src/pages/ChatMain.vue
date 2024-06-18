@@ -5,7 +5,7 @@ const count = ref(0)
 </script>
 
 <template>
-  <div class="main">Main</div>
+  <div class="main">Chat Main</div>
 </template>
 
 <style lang="sass" scoped>

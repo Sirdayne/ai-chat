@@ -46,6 +46,7 @@ const password = ref('secret');
       font-weight: 500
 
     &__sub-title
+      margin-top: 15px
       color: #99A1B7
       font-size: 16px
       text-align: center
@@ -65,7 +66,7 @@ const password = ref('secret');
     margin-top: 15px
 
     &-row
-      margin-bottom: 15px
+      margin-bottom: 18px
 
       &__label
         color: #071437
